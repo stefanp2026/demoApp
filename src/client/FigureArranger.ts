@@ -1,15 +1,15 @@
-import { ChessBoardV3 } from './ChessBoardV3.js';
+import { ChessBoardV3, type FigureColor, type FigureName } from './ChessBoardV3.ts';
 
 /**
  * Arranges the chess figures on a chess board.
  */
-export function FigureArranger() {
-    this.chessBoard = new ChessBoardV3();
+export class FigureArranger {
+    chessBoard = new ChessBoardV3();
 
     /**
      * Arranges all the figures on the specified chess board.
      */
-    this.arrangeFiguresOnChessBoard = function (chessBoardId) {
+    arrangeFiguresOnChessBoard(chessBoardId: string): void {
         this.arrangeNotPawns(chessBoardId, 'white');
 
         for (var i = 1; i <= 8; i++) {
@@ -23,7 +23,7 @@ export function FigureArranger() {
         }
     }
 
-    this.arrangeNotPawns = function (chessBoardId, color) {
+    arrangeNotPawns(chessBoardId: string, color: FigureColor): void {
         var line = 1;
 
         if (color === 'black') {
@@ -40,46 +40,47 @@ export function FigureArranger() {
         this.arrangeFigure(chessBoardId, line, 8, color, 'tower');
     }
 
-    this.getCell = function(chessBoardId, row, column){
+    getCell(chessBoardId: string, row: number, column: number): JQuery {
         var cellId = this.chessBoard.getCellId(row, column);
-        return $('#' + chessBoardId + ' #' + cellId + '');        
+        return $('#' + chessBoardId + ' #' + cellId + '');
     }
 
-    this.arrangeText = function(chessBoardId, row, column, text){        
+    arrangeText(chessBoardId: string, row: number, column: number, text: string): void {
         var cell = this.getCell(chessBoardId, row, column);
 
-        $(cell).html(text);        
+        $(cell).html(text);
     }
 
-    this.arrangeFigure = function (chessBoardId, row, column, color, figure) {        
+    arrangeFigure(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
         var cell = this.getCell(chessBoardId, row, column);
-        var figureId = this.chessBoard.getFigureId(color, figure); 
+        var figureId = this.chessBoard.getFigureId(color, figure);
         var htmlForFigure = '<div id="' + figureId + '" style="' + this.chessBoard.getStyleFor(color, figure) + '"></div>';
         cell.html(htmlForFigure);
 
         this.makeFigureDraggable(chessBoardId, row, column, color, figure)
-    }    
+    }
 
     /**
-     * Makes the specified figure.Specify the Figure. 
+     * Makes the specified figure.Specify the Figure.
      */
-    this.makeFigureDraggable = function (chessBoardId, row, column, color, figure) {
-        var cellId = this.chessBoard.getCellId(row, column);        
+    makeFigureDraggable(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
+        var cellId = this.chessBoard.getCellId(row, column);
         var figureId = this.chessBoard.getFigureId(color, figure);
 
-        var cell = $('#' + chessBoardId + ' #' + cellId + ''); 
-        var figure = $('#' + cellId + ' #' + figureId + '');
-        
-        var currentParent;
+        var cell = $('#' + chessBoardId + ' #' + cellId + '');
+        // was named "figure" and shadowed the parameter with a different type
+        var figureElement = $('#' + cellId + ' #' + figureId + '');
 
-        figure.draggable({
+        var currentParent: string | undefined;
+
+        figureElement.draggable({
             revert: 'invalid',
-            start: function () {
+            start: function (this: HTMLElement) {
                 $(this).css('z-index', '1000')
                 currentParent = $(this).parent().attr('id');
             },
 
-            stop:function(){
+            stop: function (this: HTMLElement) {
                 $(this).css('z-index', '1')
             },
         });

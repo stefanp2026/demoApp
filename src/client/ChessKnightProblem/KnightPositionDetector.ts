@@ -1,14 +1,14 @@
 /**
  * Detects the next possible positions.
  */
-export function KnightPositionDetector() {
+export class KnightPositionDetector {
 
     /**
      * Gets the possible positions of the specified position.
-     * @param {BoardPosition} currentPosition The current position on the board.
+     * @param currentPosition The current position on the board.
      */
-    this.getPosiblePositions = function (currentPosition) {
-        var possiblePositions = [];
+    getPosiblePositions(currentPosition: BoardPosition): BoardPosition[] {
+        var possiblePositions: BoardPosition[] = [];
 
         var positionDeltas = [
             new BoardPositionDelta(-2, 1),
@@ -30,13 +30,13 @@ export function KnightPositionDetector() {
         }
 
         return possiblePositions;
-    };
+    }
 
     /**
      * gets the next posible position , after the current position.
-     * 
+     *
      */
-    this.getNextPosition = function (startPosition, currentPosition) {
+    getNextPosition(startPosition: BoardPosition, currentPosition: BoardPosition | null): BoardPosition | null {
 
         var allPossiblePositions = this.getPosiblePositions(startPosition);
 
@@ -60,27 +60,38 @@ export function KnightPositionDetector() {
         }
 
         return null;
-    };
-};
+    }
+}
 
 /**
  * Describes a position on the chess board.
- * @param {string} theRow The row on the board.
- * @param {string} theColumn The column on the board.   
  */
-export function BoardPosition(theRow, theColumn) {
+export class BoardPosition {
+    row: number;
+    column: number;
 
-    if (0 > theRow || theRow > 8)
-        throw new Error('row must be between 0 and 8');
+    /**
+     * @param theRow The row on the board.
+     * @param theColumn The column on the board.
+     */
+    constructor(theRow: number, theColumn: number) {
+        if (0 > theRow || theRow > 8)
+            throw new Error('row must be between 0 and 8');
 
-    if (0 > theColumn || theColumn > 8)
-        throw new Error('column must be between 0 and 8');
+        if (0 > theColumn || theColumn > 8)
+            throw new Error('column must be between 0 and 8');
 
-    this.row = theRow;
-    this.column = theColumn;
-};
+        this.row = theRow;
+        this.column = theColumn;
+    }
+}
 
-function BoardPositionDelta(theRowDelta, theColumnDelta) {
-    this.rowDelta = theRowDelta;
-    this.columnDelta = theColumnDelta;
-};
+class BoardPositionDelta {
+    rowDelta: number;
+    columnDelta: number;
+
+    constructor(theRowDelta: number, theColumnDelta: number) {
+        this.rowDelta = theRowDelta;
+        this.columnDelta = theColumnDelta;
+    }
+}
