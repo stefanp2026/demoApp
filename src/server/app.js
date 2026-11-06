@@ -1,6 +1,10 @@
 import express from 'express';
+import path from 'node:path';
 import pug from 'pug';
-import { ChessBoardV3 } from './public/js/ChessBoardV3.js';
+import { ChessBoardV3 } from '../client/ChessBoardV3.js';
+
+var rootDir = path.join(import.meta.dirname, '..', '..');
+var clientDir = path.join(import.meta.dirname, '..', 'client');
 
 var app = express();
 var chessBoard = new ChessBoardV3();
@@ -10,7 +14,9 @@ initApp(app, pug);
 function initApp(app, pug) {
     console.log('app: begin initialisation');
 
-    app.use(express.static(import.meta.dirname + '/public'));
+    app.use(express.static(path.join(rootDir, 'public')));
+    // client modules live in src/client but keep their public URL /js
+    app.use('/js', express.static(clientDir));
 
     var pageTitle = 'Stefan Prodana: Demo mit node.js, express, pug, jQuery gehostet im AWS';
 
@@ -36,7 +42,7 @@ function initApp(app, pug) {
 function getPage(app, pug, relativePageUrl, pathToThePage, thePageTitle, thePageName) {
     app.get(relativePageUrl, function (req, res) {
 
-        var templateFilePath = import.meta.dirname + pathToThePage;
+        var templateFilePath = path.join(rootDir, pathToThePage);
         var compiledFunction = pug.compileFile(templateFilePath);
         var html = compiledFunction({
             pageTitle: thePageTitle,
