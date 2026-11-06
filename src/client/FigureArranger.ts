@@ -75,12 +75,12 @@ export class FigureArranger {
 
         figureElement.draggable({
             revert: 'invalid',
-            start: function (this: HTMLElement) {
+            start(this: HTMLElement) {
                 $(this).css('z-index', '1000')
                 currentParent = $(this).parent().attr('id');
             },
 
-            stop: function (this: HTMLElement) {
+            stop(this: HTMLElement) {
                 $(this).css('z-index', '1')
             },
         });
@@ -91,7 +91,7 @@ export class FigureArranger {
 
         $(cellsToWhomItCanBeDropped).droppable({
             accept: '#' + figureId,
-            drop: function (event, ui) {
+            drop(event, ui) {
                 // if (currentParent != $(this).attr('id')) {
                 //     $(ui.draggable).appendTo($(this)).removeAttr('style');
                 // }

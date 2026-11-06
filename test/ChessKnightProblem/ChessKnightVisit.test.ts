@@ -3,7 +3,7 @@ import { ChessKnightVisitor } from '../../src/client/ChessKnightProblem/ChessKni
 import { BoardPosition, KnightPositionDetector } from '../../src/client/ChessKnightProblem/KnightPositionDetector.ts';
 
 // backtracking search over the whole board, so it gets more time than the 5 s default
-test('should be able to visit the table', { timeout: 30000 }, function () {
+test('should be able to visit the table', { timeout: 30000 }, () => {
     var startPosition = new BoardPosition(0, 0);
     var positionDetector = new KnightPositionDetector();
 

@@ -22,7 +22,7 @@ export class App {
     }
 
     findSolution(): Promise<BoardPosition[]> {
-        return new Promise(function (resolve) {
+        return new Promise((resolve) => {
             var startPosition = new BoardPosition(0, 0);
             var positionDetector = new KnightPositionDetector();
 
