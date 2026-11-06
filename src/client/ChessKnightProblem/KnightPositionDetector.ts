@@ -2,7 +2,6 @@
  * Detects the next possible positions.
  */
 export class KnightPositionDetector {
-
     /**
      * Gets the possible positions of the specified position.
      * @param currentPosition The current position on the board.
@@ -37,7 +36,6 @@ export class KnightPositionDetector {
      *
      */
     getNextPosition(startPosition: BoardPosition, currentPosition: BoardPosition | null): BoardPosition | null {
-
         const allPossiblePositions = this.getPosiblePositions(startPosition);
 
         if (allPossiblePositions.length == 0) {
@@ -49,11 +47,13 @@ export class KnightPositionDetector {
         }
 
         for (let i = 0; i < allPossiblePositions.length; i++) {
-            if (allPossiblePositions[i].row == currentPosition.row && allPossiblePositions[i].column == currentPosition.column) {
+            if (
+                allPossiblePositions[i].row == currentPosition.row &&
+                allPossiblePositions[i].column == currentPosition.column
+            ) {
                 if (i < allPossiblePositions.length - 1) {
                     return allPossiblePositions[i + 1];
-                }
-                else {
+                } else {
                     return null;
                 }
             }
@@ -75,11 +75,9 @@ export class BoardPosition {
      * @param theColumn The column on the board.
      */
     constructor(theRow: number, theColumn: number) {
-        if (0 > theRow || theRow > 8)
-            throw new Error('row must be between 0 and 8');
+        if (0 > theRow || theRow > 8) throw new Error('row must be between 0 and 8');
 
-        if (0 > theColumn || theColumn > 8)
-            throw new Error('column must be between 0 and 8');
+        if (0 > theColumn || theColumn > 8) throw new Error('column must be between 0 and 8');
 
         this.row = theRow;
         this.column = theColumn;

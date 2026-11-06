@@ -32,9 +32,9 @@ export class ChessBoardV3 {
      * Gets the column number to display.
      */
     getDisplayColumnNumber(columnNumber: number): string {
-        const columns = ['A','B','C','D','E','F','G','H'];
+        const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-        return columns[columnNumber-1];
+        return columns[columnNumber - 1];
     }
 
     /**
@@ -70,9 +70,9 @@ export class ChessBoardV3 {
      * Gets the style for the specified color and figure.
      */
     getStyleFor(color: FigureColor, figure: FigureName): string {
-        let style = "background-image: url('/img/ChessFigures.png');"
-        style += "background-position-x: " + this.getFigureXPositionInSpriteImage(figure) + "px;"
-        style += "background-position-y: " + this.getFigureYPositionInSpriteImage(color) + "px;";
+        let style = "background-image: url('/img/ChessFigures.png');";
+        style += 'background-position-x: ' + this.getFigureXPositionInSpriteImage(figure) + 'px;';
+        style += 'background-position-y: ' + this.getFigureYPositionInSpriteImage(color) + 'px;';
         style += 'height: 54px;';
         return style;
     }

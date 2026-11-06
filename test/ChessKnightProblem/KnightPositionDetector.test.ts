@@ -2,11 +2,15 @@ import { expect, test } from 'vitest';
 import { BoardPosition, KnightPositionDetector } from '../../src/client/ChessKnightProblem/KnightPositionDetector.ts';
 
 test('Row must be inside the chess board', () => {
-    expect(() => { new BoardPosition(10, 2); }).toThrow('row must be between 0 and 8');
+    expect(() => {
+        new BoardPosition(10, 2);
+    }).toThrow('row must be between 0 and 8');
 });
 
 test('Column must be inside the chess board', () => {
-    expect(() => { new BoardPosition(3, 10); }).toThrow('column must be between 0 and 8');
+    expect(() => {
+        new BoardPosition(3, 10);
+    }).toThrow('column must be between 0 and 8');
 });
 
 test('should be able to detect the next positions for 0,0', () => {

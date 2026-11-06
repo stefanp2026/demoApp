@@ -1,19 +1,19 @@
 {
-    // type checking only (pnpm typecheck): Vite and Vitest transpile the code themselves
-    "compilerOptions": {
-        "target": "es2022",
-        "lib": ["es2022", "dom", "dom.iterable"],
-        "module": "preserve",
-        "moduleResolution": "bundler",
-        "noEmit": true,
-        "allowImportingTsExtensions": true,
-        "strict": true,
-        // keep the code transpilable by type stripping alone (no enums, namespaces, parameter properties)
-        "erasableSyntaxOnly": true,
-        "verbatimModuleSyntax": true,
-        "skipLibCheck": true,
-        // jQuery and jQuery UI are loaded as globals from the CDN; node is only for vite.config.ts
-        "types": ["jquery", "jqueryui", "node"]
-    },
-    "include": ["src", "test", "vite.config.ts"]
+  // type checking only (pnpm typecheck): Vite and Vitest transpile the code themselves
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    // keep the code transpilable by type stripping alone (no enums, namespaces, parameter properties)
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    // jQuery and jQuery UI are loaded as globals from the CDN; node is only for vite.config.ts
+    "types": ["jquery", "jqueryui", "node"]
+  },
+  "include": ["src", "test", "vite.config.ts"]
 }

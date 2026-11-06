@@ -54,16 +54,23 @@ export class FigureArranger {
     arrangeFigure(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
         const cell = this.getCell(chessBoardId, row, column);
         const figureId = this.chessBoard.getFigureId(color, figure);
-        const htmlForFigure = '<div id="' + figureId + '" style="' + this.chessBoard.getStyleFor(color, figure) + '"></div>';
+        const htmlForFigure =
+            '<div id="' + figureId + '" style="' + this.chessBoard.getStyleFor(color, figure) + '"></div>';
         cell.html(htmlForFigure);
 
-        this.makeFigureDraggable(chessBoardId, row, column, color, figure)
+        this.makeFigureDraggable(chessBoardId, row, column, color, figure);
     }
 
     /**
      * Makes the specified figure.Specify the Figure.
      */
-    makeFigureDraggable(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
+    makeFigureDraggable(
+        chessBoardId: string,
+        row: number,
+        column: number,
+        color: FigureColor,
+        figure: FigureName,
+    ): void {
         const cellId = this.chessBoard.getCellId(row, column);
         const figureId = this.chessBoard.getFigureId(color, figure);
 
@@ -76,18 +83,18 @@ export class FigureArranger {
         figureElement.draggable({
             revert: 'invalid',
             start(this: HTMLElement) {
-                $(this).css('z-index', '1000')
+                $(this).css('z-index', '1000');
                 currentParent = $(this).parent().attr('id');
             },
 
             stop(this: HTMLElement) {
-                $(this).css('z-index', '1')
+                $(this).css('z-index', '1');
             },
         });
 
-        let cellsToWhomItCanBeDropped = '#' + this.chessBoard.getCellId(3, 3) + ','
-        cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(5, 5) + ','
-        cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(8, 8)
+        let cellsToWhomItCanBeDropped = '#' + this.chessBoard.getCellId(3, 3) + ',';
+        cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(5, 5) + ',';
+        cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(8, 8);
 
         $(cellsToWhomItCanBeDropped).droppable({
             accept: '#' + figureId,
@@ -95,7 +102,7 @@ export class FigureArranger {
                 // if (currentParent != $(this).attr('id')) {
                 //     $(ui.draggable).appendTo($(this)).removeAttr('style');
                 // }
-            }
+            },
         });
     }
 }
