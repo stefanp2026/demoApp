@@ -42,7 +42,7 @@ export class FigureArranger {
 
     getCell(chessBoardId: string, row: number, column: number): JQuery {
         const cellId = this.chessBoard.getCellId(row, column);
-        return $('#' + chessBoardId + ' #' + cellId + '');
+        return $(`#${chessBoardId} #${cellId}`);
     }
 
     arrangeText(chessBoardId: string, row: number, column: number, text: string): void {
@@ -54,8 +54,7 @@ export class FigureArranger {
     arrangeFigure(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
         const cell = this.getCell(chessBoardId, row, column);
         const figureId = this.chessBoard.getFigureId(color, figure);
-        const htmlForFigure =
-            '<div id="' + figureId + '" style="' + this.chessBoard.getStyleFor(color, figure) + '"></div>';
+        const htmlForFigure = `<div id="${figureId}" style="${this.chessBoard.getStyleFor(color, figure)}"></div>`;
         cell.html(htmlForFigure);
 
         this.makeFigureDraggable(chessBoardId, row, column, color, figure);
@@ -74,17 +73,13 @@ export class FigureArranger {
         const cellId = this.chessBoard.getCellId(row, column);
         const figureId = this.chessBoard.getFigureId(color, figure);
 
-        const cell = $('#' + chessBoardId + ' #' + cellId + '');
         // was named "figure" and shadowed the parameter with a different type
-        const figureElement = $('#' + cellId + ' #' + figureId + '');
-
-        let currentParent: string | undefined;
+        const figureElement = $(`#${chessBoardId} #${cellId} #${figureId}`);
 
         figureElement.draggable({
             revert: 'invalid',
             start(this: HTMLElement) {
                 $(this).css('z-index', '1000');
-                currentParent = $(this).parent().attr('id');
             },
 
             stop(this: HTMLElement) {
@@ -92,17 +87,13 @@ export class FigureArranger {
             },
         });
 
-        let cellsToWhomItCanBeDropped = '#' + this.chessBoard.getCellId(3, 3) + ',';
-        cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(5, 5) + ',';
-        cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(8, 8);
+        let cellsToWhomItCanBeDropped = `#${this.chessBoard.getCellId(3, 3)},`;
+        cellsToWhomItCanBeDropped += `#${this.chessBoard.getCellId(5, 5)},`;
+        cellsToWhomItCanBeDropped += `#${this.chessBoard.getCellId(8, 8)}`;
 
+        // valid drop targets; revert: 'invalid' sends the figure back when dropped anywhere else
         $(cellsToWhomItCanBeDropped).droppable({
-            accept: '#' + figureId,
-            drop(event, ui) {
-                // if (currentParent != $(this).attr('id')) {
-                //     $(ui.draggable).appendTo($(this)).removeAttr('style');
-                // }
-            },
+            accept: `#${figureId}`,
         });
     }
 }

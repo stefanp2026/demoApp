@@ -67,22 +67,17 @@
 }
 
 /*it should be configurable*/
-.cell-white .cell-black {
+.cell-white,
+.cell-black {
     width: 55px;
     height: 55px;
     float: left;
 }
 
 .cell-white {
-    width: 55px;
-    height: 55px;
     background-color: cornsilk;
-    float: left;
 }
 
 .cell-black {
-    width: 55px;
-    height: 55px;
     background-color: cornflowerblue;
-    float: left;
 }

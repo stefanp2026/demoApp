@@ -15,15 +15,18 @@ export class ChessKnightVisitor {
         this.visitedPositions.push(startPosition);
 
         while (this.visitedPositions.length > 0 && this.visitedPositions.length < 64) {
-            let currentPosition = this.visitedPositions[this.visitedPositions.length - 1];
+            const currentPosition = this.visitedPositions[this.visitedPositions.length - 1];
             let nextPosition = this.getTheNextUnvisitedPositionFor(currentPosition, null);
 
-            while (nextPosition == null && this.visitedPositions.length > 0) {
-                // the loop condition guarantees a non-empty array, so pop() cannot return undefined
-                const positionTried = this.visitedPositions.pop()!;
-                currentPosition = this.visitedPositions[this.visitedPositions.length - 1];
+            // backtrack: drop the dead-end position and try the next alternative from its predecessor
+            while (nextPosition == null) {
+                const positionTried = this.visitedPositions.pop();
+                const previousPosition = this.visitedPositions.at(-1);
 
-                nextPosition = this.getTheNextUnvisitedPositionFor(currentPosition, positionTried);
+                // start position itself is a dead end -> no tour possible, outer loop ends on the empty list
+                if (positionTried === undefined || previousPosition === undefined) break;
+
+                nextPosition = this.getTheNextUnvisitedPositionFor(previousPosition, positionTried);
             }
 
             if (nextPosition != null) this.visitedPositions.push(nextPosition);
@@ -38,7 +41,7 @@ export class ChessKnightVisitor {
         for (let i = 0; i < this.visitedPositions.length; i++) {
             const element = this.visitedPositions[i];
 
-            if (element.row == position.row && element.column == position.column) {
+            if (element.row === position.row && element.column === position.column) {
                 return true;
             }
         }

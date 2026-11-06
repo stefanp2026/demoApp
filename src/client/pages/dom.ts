@@ -6,7 +6,7 @@ export function getRequiredElement(id: string): HTMLElement {
     const element = document.getElementById(id);
 
     if (element === null) {
-        throw new Error('required element #' + id + ' is missing in the page');
+        throw new Error(`required element #${id} is missing in the page`);
     }
 
     return element;

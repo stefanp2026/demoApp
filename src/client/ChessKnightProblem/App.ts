@@ -13,7 +13,7 @@ export class App {
     }
 
     findAndDisplaySolution(): void {
-        $('#' + this.feedbackLabelId).html('Suche nach einer Lösung...');
+        $(`#${this.feedbackLabelId}`).html('Suche nach einer Lösung...');
 
         // arrow functions keep "this", which replaces the former "var self = this"
         setTimeout(() => {
@@ -34,7 +34,7 @@ export class App {
     }
 
     displaySolution(solution: BoardPosition[]): void {
-        $('#' + this.feedbackLabelId).html('Die Suche ist fertig. Eine Lösung ist gefunden!');
+        $(`#${this.feedbackLabelId}`).html('Die Suche ist fertig. Eine Lösung ist gefunden!');
 
         const figureArranger = new FigureArranger();
         let solutionIndex = 0;

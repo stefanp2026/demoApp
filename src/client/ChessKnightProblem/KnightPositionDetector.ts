@@ -38,7 +38,7 @@ export class KnightPositionDetector {
     getNextPosition(startPosition: BoardPosition, currentPosition: BoardPosition | null): BoardPosition | null {
         const allPossiblePositions = this.getPosiblePositions(startPosition);
 
-        if (allPossiblePositions.length == 0) {
+        if (allPossiblePositions.length === 0) {
             return null;
         }
 
@@ -48,8 +48,8 @@ export class KnightPositionDetector {
 
         for (let i = 0; i < allPossiblePositions.length; i++) {
             if (
-                allPossiblePositions[i].row == currentPosition.row &&
-                allPossiblePositions[i].column == currentPosition.column
+                allPossiblePositions[i].row === currentPosition.row &&
+                allPossiblePositions[i].column === currentPosition.column
             ) {
                 if (i < allPossiblePositions.length - 1) {
                     return allPossiblePositions[i + 1];

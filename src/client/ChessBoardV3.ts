@@ -11,14 +11,14 @@ export class ChessBoardV3 {
      * @param column: the column of the cell.
      */
     getCellId(row: number, column: number): string {
-        return 'cell_' + row + '_' + column;
+        return `cell_${row}_${column}`;
     }
 
     /**
      * Gets the id of the specified figure.
      */
     getFigureId(color: FigureColor, figure: FigureName): string {
-        return 'figure_' + color + '_' + figure;
+        return `figure_${color}_${figure}`;
     }
 
     /**
@@ -71,8 +71,8 @@ export class ChessBoardV3 {
      */
     getStyleFor(color: FigureColor, figure: FigureName): string {
         let style = "background-image: url('/img/ChessFigures.png');";
-        style += 'background-position-x: ' + this.getFigureXPositionInSpriteImage(figure) + 'px;';
-        style += 'background-position-y: ' + this.getFigureYPositionInSpriteImage(color) + 'px;';
+        style += `background-position-x: ${this.getFigureXPositionInSpriteImage(figure)}px;`;
+        style += `background-position-y: ${this.getFigureYPositionInSpriteImage(color)}px;`;
         style += 'height: 54px;';
         return style;
     }
