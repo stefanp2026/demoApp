@@ -12,19 +12,19 @@ export class FigureArranger {
     arrangeFiguresOnChessBoard(chessBoardId: string): void {
         this.arrangeNotPawns(chessBoardId, 'white');
 
-        for (var i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 8; i++) {
             this.arrangeFigure(chessBoardId, 2, i, 'white', 'pawn');
         }
 
         this.arrangeNotPawns(chessBoardId, 'black');
 
-        for (var i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 8; i++) {
             this.arrangeFigure(chessBoardId, 7, i, 'black', 'pawn');
         }
     }
 
     arrangeNotPawns(chessBoardId: string, color: FigureColor): void {
-        var line = 1;
+        let line = 1;
 
         if (color === 'black') {
             line = 8;
@@ -41,20 +41,20 @@ export class FigureArranger {
     }
 
     getCell(chessBoardId: string, row: number, column: number): JQuery {
-        var cellId = this.chessBoard.getCellId(row, column);
+        const cellId = this.chessBoard.getCellId(row, column);
         return $('#' + chessBoardId + ' #' + cellId + '');
     }
 
     arrangeText(chessBoardId: string, row: number, column: number, text: string): void {
-        var cell = this.getCell(chessBoardId, row, column);
+        const cell = this.getCell(chessBoardId, row, column);
 
         $(cell).html(text);
     }
 
     arrangeFigure(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
-        var cell = this.getCell(chessBoardId, row, column);
-        var figureId = this.chessBoard.getFigureId(color, figure);
-        var htmlForFigure = '<div id="' + figureId + '" style="' + this.chessBoard.getStyleFor(color, figure) + '"></div>';
+        const cell = this.getCell(chessBoardId, row, column);
+        const figureId = this.chessBoard.getFigureId(color, figure);
+        const htmlForFigure = '<div id="' + figureId + '" style="' + this.chessBoard.getStyleFor(color, figure) + '"></div>';
         cell.html(htmlForFigure);
 
         this.makeFigureDraggable(chessBoardId, row, column, color, figure)
@@ -64,14 +64,14 @@ export class FigureArranger {
      * Makes the specified figure.Specify the Figure.
      */
     makeFigureDraggable(chessBoardId: string, row: number, column: number, color: FigureColor, figure: FigureName): void {
-        var cellId = this.chessBoard.getCellId(row, column);
-        var figureId = this.chessBoard.getFigureId(color, figure);
+        const cellId = this.chessBoard.getCellId(row, column);
+        const figureId = this.chessBoard.getFigureId(color, figure);
 
-        var cell = $('#' + chessBoardId + ' #' + cellId + '');
+        const cell = $('#' + chessBoardId + ' #' + cellId + '');
         // was named "figure" and shadowed the parameter with a different type
-        var figureElement = $('#' + cellId + ' #' + figureId + '');
+        const figureElement = $('#' + cellId + ' #' + figureId + '');
 
-        var currentParent: string | undefined;
+        let currentParent: string | undefined;
 
         figureElement.draggable({
             revert: 'invalid',
@@ -85,7 +85,7 @@ export class FigureArranger {
             },
         });
 
-        var cellsToWhomItCanBeDropped = '#' + this.chessBoard.getCellId(3, 3) + ','
+        let cellsToWhomItCanBeDropped = '#' + this.chessBoard.getCellId(3, 3) + ','
         cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(5, 5) + ','
         cellsToWhomItCanBeDropped += '#' + this.chessBoard.getCellId(8, 8)
 

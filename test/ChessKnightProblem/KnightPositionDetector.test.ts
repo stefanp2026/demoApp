@@ -10,9 +10,9 @@ test('Column must be inside the chess board', () => {
 });
 
 test('should be able to detect the next positions for 0,0', () => {
-    var currentPosition = new BoardPosition(0, 0);
-    var positionDetector = new KnightPositionDetector();
-    var possiblePositions = positionDetector.getPosiblePositions(currentPosition);
+    const currentPosition = new BoardPosition(0, 0);
+    const positionDetector = new KnightPositionDetector();
+    const possiblePositions = positionDetector.getPosiblePositions(currentPosition);
 
     expect(possiblePositions.length).toBe(2);
     expectArrayContainsPosition(possiblePositions, 1, 2);
@@ -20,9 +20,9 @@ test('should be able to detect the next positions for 0,0', () => {
 });
 
 test('should be able to detect the next positions for 1,1', () => {
-    var currentPosition = new BoardPosition(1, 1);
-    var positionDetector = new KnightPositionDetector();
-    var possiblePositions = positionDetector.getPosiblePositions(currentPosition);
+    const currentPosition = new BoardPosition(1, 1);
+    const positionDetector = new KnightPositionDetector();
+    const possiblePositions = positionDetector.getPosiblePositions(currentPosition);
 
     expect(possiblePositions.length).toBe(4);
     expectArrayContainsPosition(possiblePositions, 0, 3);
@@ -32,9 +32,9 @@ test('should be able to detect the next positions for 1,1', () => {
 });
 
 test('should be able to detect the next positions for 1,6', () => {
-    var currentPosition = new BoardPosition(1, 6);
-    var positionDetector = new KnightPositionDetector();
-    var possiblePositions = positionDetector.getPosiblePositions(currentPosition);
+    const currentPosition = new BoardPosition(1, 6);
+    const positionDetector = new KnightPositionDetector();
+    const possiblePositions = positionDetector.getPosiblePositions(currentPosition);
 
     expect(possiblePositions.length).toBe(4);
     expectArrayContainsPosition(possiblePositions, 3, 7);
@@ -44,37 +44,37 @@ test('should be able to detect the next positions for 1,6', () => {
 });
 
 test('should be able to detect the next possible position for 1,6 and 3,5', () => {
-    var startPosition = new BoardPosition(1, 6);
-    var currentPosition = new BoardPosition(3, 5);
-    var positionDetector = new KnightPositionDetector();
+    const startPosition = new BoardPosition(1, 6);
+    const currentPosition = new BoardPosition(3, 5);
+    const positionDetector = new KnightPositionDetector();
 
-    var detectedPosition = positionDetector.getNextPosition(startPosition, currentPosition);
+    const detectedPosition = positionDetector.getNextPosition(startPosition, currentPosition);
     expect(detectedPosition).toMatchObject({ row: 2, column: 4 });
 });
 
 test('should be able to detect the next possible position for 7,7 and null', () => {
-    var startPosition = new BoardPosition(7, 7);
-    var positionDetector = new KnightPositionDetector();
+    const startPosition = new BoardPosition(7, 7);
+    const positionDetector = new KnightPositionDetector();
 
-    var detectedPosition = positionDetector.getNextPosition(startPosition, null);
+    const detectedPosition = positionDetector.getNextPosition(startPosition, null);
     expect(detectedPosition).toMatchObject({ row: 6, column: 5 });
 });
 
 test('should be able to detect the next possible position for 7,7 and 6,5', () => {
-    var startPosition = new BoardPosition(7, 7);
-    var currentPosition = new BoardPosition(6, 5);
-    var positionDetector = new KnightPositionDetector();
+    const startPosition = new BoardPosition(7, 7);
+    const currentPosition = new BoardPosition(6, 5);
+    const positionDetector = new KnightPositionDetector();
 
-    var detectedPosition = positionDetector.getNextPosition(startPosition, currentPosition);
+    const detectedPosition = positionDetector.getNextPosition(startPosition, currentPosition);
     expect(detectedPosition).toMatchObject({ row: 5, column: 6 });
 });
 
 test('should be able to detect the next possible position for 7,7 and 5,6', () => {
-    var startPosition = new BoardPosition(7, 7);
-    var currentPosition = new BoardPosition(5, 6);
-    var positionDetector = new KnightPositionDetector();
+    const startPosition = new BoardPosition(7, 7);
+    const currentPosition = new BoardPosition(5, 6);
+    const positionDetector = new KnightPositionDetector();
 
-    var detectedPosition = positionDetector.getNextPosition(startPosition, currentPosition);
+    const detectedPosition = positionDetector.getNextPosition(startPosition, currentPosition);
     expect(detectedPosition).toBe(null);
 });
 

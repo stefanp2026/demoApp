@@ -8,9 +8,9 @@ export class KnightPositionDetector {
      * @param currentPosition The current position on the board.
      */
     getPosiblePositions(currentPosition: BoardPosition): BoardPosition[] {
-        var possiblePositions: BoardPosition[] = [];
+        const possiblePositions: BoardPosition[] = [];
 
-        var positionDeltas = [
+        const positionDeltas = [
             new BoardPositionDelta(-2, 1),
             new BoardPositionDelta(-1, 2),
             new BoardPositionDelta(1, 2),
@@ -21,9 +21,9 @@ export class KnightPositionDetector {
             new BoardPositionDelta(-2, -1),
         ];
 
-        for (var i = 0; i < positionDeltas.length; i++) {
-            var newRow = currentPosition.row + positionDeltas[i].rowDelta;
-            var newColumn = currentPosition.column + positionDeltas[i].columnDelta;
+        for (let i = 0; i < positionDeltas.length; i++) {
+            const newRow = currentPosition.row + positionDeltas[i].rowDelta;
+            const newColumn = currentPosition.column + positionDeltas[i].columnDelta;
 
             if (0 <= newRow && newRow < 8 && 0 <= newColumn && newColumn < 8)
                 possiblePositions.push(new BoardPosition(newRow, newColumn));
@@ -38,7 +38,7 @@ export class KnightPositionDetector {
      */
     getNextPosition(startPosition: BoardPosition, currentPosition: BoardPosition | null): BoardPosition | null {
 
-        var allPossiblePositions = this.getPosiblePositions(startPosition);
+        const allPossiblePositions = this.getPosiblePositions(startPosition);
 
         if (allPossiblePositions.length == 0) {
             return null;
@@ -48,7 +48,7 @@ export class KnightPositionDetector {
             return allPossiblePositions[0];
         }
 
-        for (var i = 0; i < allPossiblePositions.length; i++) {
+        for (let i = 0; i < allPossiblePositions.length; i++) {
             if (allPossiblePositions[i].row == currentPosition.row && allPossiblePositions[i].column == currentPosition.column) {
                 if (i < allPossiblePositions.length - 1) {
                     return allPossiblePositions[i + 1];

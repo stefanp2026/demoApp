@@ -32,7 +32,7 @@ export class ChessBoardV3 {
      * Gets the column number to display.
      */
     getDisplayColumnNumber(columnNumber: number): string {
-        var columns = ['A','B','C','D','E','F','G','H'];
+        const columns = ['A','B','C','D','E','F','G','H'];
 
         return columns[columnNumber-1];
     }
@@ -48,9 +48,9 @@ export class ChessBoardV3 {
      * Gets the x position inside the sprite image for the specified figure.
      */
     getFigureXPositionInSpriteImage(figure: FigureName): number {
-        var figures = this.getFigures();
-        var figureIndex = figures.indexOf(figure);
-        var figureOffset = 54;
+        const figures = this.getFigures();
+        const figureIndex = figures.indexOf(figure);
+        const figureOffset = 54;
         // subtract from 0 instead of multiplying by -1, which would yield -0 for the first figure
         return 0 - figureIndex * figureOffset;
     }
@@ -59,9 +59,9 @@ export class ChessBoardV3 {
      * Gets the Y position inside the sprite image for the specified figure's color.
      */
     getFigureYPositionInSpriteImage(color: FigureColor): number {
-        var colors: FigureColor[] = ['white', 'black'];
-        var colorIndex = colors.indexOf(color);
-        var figurOffset = 54;
+        const colors: FigureColor[] = ['white', 'black'];
+        const colorIndex = colors.indexOf(color);
+        const figurOffset = 54;
         // subtract from 0 instead of multiplying by -1, which would yield -0 for the first color
         return 0 - colorIndex * figurOffset;
     }
@@ -70,7 +70,7 @@ export class ChessBoardV3 {
      * Gets the style for the specified color and figure.
      */
     getStyleFor(color: FigureColor, figure: FigureName): string {
-        var style = "background-image: url('/img/ChessFigures.png');"
+        let style = "background-image: url('/img/ChessFigures.png');"
         style += "background-position-x: " + this.getFigureXPositionInSpriteImage(figure) + "px;"
         style += "background-position-y: " + this.getFigureYPositionInSpriteImage(color) + "px;";
         style += 'height: 54px;';

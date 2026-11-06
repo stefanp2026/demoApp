@@ -23,10 +23,10 @@ export class App {
 
     findSolution(): Promise<BoardPosition[]> {
         return new Promise((resolve) => {
-            var startPosition = new BoardPosition(0, 0);
-            var positionDetector = new KnightPositionDetector();
+            const startPosition = new BoardPosition(0, 0);
+            const positionDetector = new KnightPositionDetector();
 
-            var visitor = new ChessKnightVisitor(positionDetector);
+            const visitor = new ChessKnightVisitor(positionDetector);
             visitor.visitChessBoard(startPosition);
 
             resolve(visitor.visitedPositions);
@@ -36,8 +36,8 @@ export class App {
     displaySolution(solution: BoardPosition[]): void {
         $('#' + this.feedbackLabelId).html('Die Suche ist fertig. Eine Lösung ist gefunden!');
 
-        var figureArranger = new FigureArranger();
-        var solutionIndex = 0;
+        const figureArranger = new FigureArranger();
+        let solutionIndex = 0;
 
         // gets the position for each cell in the index
         solution.forEach((element) => {

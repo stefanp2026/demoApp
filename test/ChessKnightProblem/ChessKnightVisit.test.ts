@@ -4,10 +4,10 @@ import { BoardPosition, KnightPositionDetector } from '../../src/client/ChessKni
 
 // backtracking search over the whole board, so it gets more time than the 5 s default
 test('should be able to visit the table', { timeout: 30000 }, () => {
-    var startPosition = new BoardPosition(0, 0);
-    var positionDetector = new KnightPositionDetector();
+    const startPosition = new BoardPosition(0, 0);
+    const positionDetector = new KnightPositionDetector();
 
-    var visitor = new ChessKnightVisitor(positionDetector);
+    const visitor = new ChessKnightVisitor(positionDetector);
     visitor.visitChessBoard(startPosition);
 
     expect(visitor.visitedPositions.length).toBe(64);
