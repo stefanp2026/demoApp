@@ -1,15 +1,16 @@
-var express = require('express');
+import express from 'express';
+import pug from 'pug';
+import { ChessBoardV3 } from './public/js/ChessBoardV3.js';
+
 var app = express();
-var pug = require('pug');
-var chessBoardFactory = require('./public/js/ChessBoardV3');
-var chessBoard = new chessBoardFactory.ChessBoard();
+var chessBoard = new ChessBoardV3();
 
 initApp(app, pug);
 
 function initApp(app, pug) {
     console.log('app: begin initialisation');
 
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(import.meta.dirname + '/public'));
 
     var pageTitle = 'Stefan Prodana: Demo mit node.js, express, pug, jQuery gehostet im AWS';
 
@@ -35,7 +36,7 @@ function initApp(app, pug) {
 function getPage(app, pug, relativePageUrl, pathToThePage, thePageTitle, thePageName) {
     app.get(relativePageUrl, function (req, res) {
 
-        var templateFilePath = __dirname + pathToThePage;
+        var templateFilePath = import.meta.dirname + pathToThePage;
         var compiledFunction = pug.compileFile(templateFilePath);
         var html = compiledFunction({
             pageTitle: thePageTitle,

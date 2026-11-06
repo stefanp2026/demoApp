@@ -1,7 +1,9 @@
+import { KnightPositionDetector } from './KnightPositionDetector.js';
+
 /**
  * Visits the chess board using a knight.
  */
-function ChessKnightVisitor(positionDetector){
+export function ChessKnightVisitor(positionDetector){
 
     this.positionDetector = positionDetector;
     this.visitedPositions = [];

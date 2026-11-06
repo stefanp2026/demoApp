@@ -1,13 +1,12 @@
 extends layout.pug
 
-block childMainContent    
-    script(src='js/ChessBoardV3.js')
-    script(src='js/FigureArranger.js')
-
+block childMainContent
     include includes/Chessboard.pug
 
     +buildChessBoard('theChessBoardInstance')
 
-    script.
-        var figureArranger = new FigureArranger();
-        figureArranger.arrangeFiguresOnChessBoard('theChessBoardInstance')
+    script(type='module').
+        import { FigureArranger } from './js/FigureArranger.js';
+
+        const figureArranger = new FigureArranger();
+        figureArranger.arrangeFiguresOnChessBoard('theChessBoardInstance');

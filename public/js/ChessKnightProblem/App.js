@@ -1,4 +1,8 @@
-function App(chessBoardId, feedbackLabelId) {
+import { FigureArranger } from '../FigureArranger.js';
+import { ChessKnightVisitor } from './ChessKnightVisit.js';
+import { BoardPosition, KnightPositionDetector } from './KnightPositionDetector.js';
+
+export function App(chessBoardId, feedbackLabelId) {
     var self = this;
 
     this.chessBoardId = chessBoardId;

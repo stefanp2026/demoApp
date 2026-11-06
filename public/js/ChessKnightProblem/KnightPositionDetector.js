@@ -1,7 +1,7 @@
 /**
  * Detects the next possible positions.
  */
-function KnightPositionDetector() {
+export function KnightPositionDetector() {
 
     /**
      * Gets the possible positions of the specified position.
@@ -21,7 +21,7 @@ function KnightPositionDetector() {
             new BoardPositionDelta(-2, -1),
         ];
 
-        for (i = 0; i < positionDeltas.length; i++) {
+        for (var i = 0; i < positionDeltas.length; i++) {
             var newRow = currentPosition.row + positionDeltas[i].rowDelta;
             var newColumn = currentPosition.column + positionDeltas[i].columnDelta;
 
@@ -48,7 +48,7 @@ function KnightPositionDetector() {
             return allPossiblePositions[0];
         }
 
-        for (i = 0; i < allPossiblePositions.length; i++) {
+        for (var i = 0; i < allPossiblePositions.length; i++) {
             if (allPossiblePositions[i].row == currentPosition.row && allPossiblePositions[i].column == currentPosition.column) {
                 if (i < allPossiblePositions.length - 1) {
                     return allPossiblePositions[i + 1];
@@ -68,7 +68,7 @@ function KnightPositionDetector() {
  * @param {string} theRow The row on the board.
  * @param {string} theColumn The column on the board.   
  */
-function BoardPosition(theRow, theColumn) {
+export function BoardPosition(theRow, theColumn) {
 
     if (0 > theRow || theRow > 8)
         throw new Error('row must be between 0 and 8');

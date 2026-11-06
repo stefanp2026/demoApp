@@ -1,3 +1,5 @@
+import { ChessBoardV3 } from '../js/ChessBoardV3.js';
+
 var chessBoard = new ChessBoardV3();
 
 QUnit.test('getCellId', function (assert) {

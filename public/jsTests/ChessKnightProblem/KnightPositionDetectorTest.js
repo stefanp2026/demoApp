@@ -1,3 +1,5 @@
+import { BoardPosition, KnightPositionDetector } from '../../js/ChessKnightProblem/KnightPositionDetector.js';
+
 QUnit.test('Row must be inside the chess board', function (assert) {
   var createPositionFunction = function () {
     var currentPosition = new BoardPosition(10, 2);
@@ -94,7 +96,7 @@ function expectArrayContainsPosition(positions, expectedRow, expectedColumn) {
 
 // helper functions. Should be put in a helper class
 function arrayContainsPosition(positions, expectedRow, expectedColumn) {
-  for (i = 0; i < positions.length; i++) {
+  for (var i = 0; i < positions.length; i++) {
     if (positions[i].row === expectedRow && positions[i].column === expectedColumn)
       return true;
   }

@@ -1,7 +1,9 @@
+import { ChessBoardV3 } from './ChessBoardV3.js';
+
 /**
  * Arranges the chess figures on a chess board.
  */
-function FigureArranger() {
+export function FigureArranger() {
     this.chessBoard = new ChessBoardV3();
 
     /**

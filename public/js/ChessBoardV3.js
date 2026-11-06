@@ -1,7 +1,7 @@
 /**
  * Describes a chess board.
  */
-function ChessBoardV3() {
+export function ChessBoardV3() {
     /**
      * Gets the id of the specified cell.
      * @param {number} row: the row of the cell.
@@ -71,9 +71,5 @@ function ChessBoardV3() {
         style += 'height: 54px;';
         return style;
     }
-}
-
-module.exports = {
-    ChessBoard : ChessBoardV3,
 }
 

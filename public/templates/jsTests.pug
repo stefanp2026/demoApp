@@ -1,13 +1,10 @@
 extends layout.pug
 
 block childMainContent
-    link(rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css")      
+    link(rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css")
     script(src="https://code.jquery.com/qunit/qunit-2.0.1.js")
-    script(src="js/ChessBoardV3.js")
-    script(src='js/ChessKnightProblem/App.js')
-    script(src='js/ChessKnightProblem/ChessKnightVisit.js')
-    script(src='js/ChessKnightProblem/KnightPositionDetector.js')    
-    script(src="jsTests/ChessBoardV3Test.js")
-    //- script(src="jsTests/ChessKnightProblem/ChessKnightVisitTest.js") //- long running test
-    script(src="jsTests/ChessKnightProblem/KnightPositionDetectorTest.js")
-    div(id="qunit")     
+    //- test modules import the code under test themselves
+    script(type='module' src="jsTests/ChessBoardV3Test.js")
+    //- script(type='module' src="jsTests/ChessKnightProblem/ChessKnightVisitTest.js") //- long running test
+    script(type='module' src="jsTests/ChessKnightProblem/KnightPositionDetectorTest.js")
+    div(id="qunit")

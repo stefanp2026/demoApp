@@ -1,25 +1,16 @@
 extends layout.pug
 
 block childMainContent
-    script(src='js/ChessBoardV3.js')
-    script(src='js/FigureArranger.js')
-
-    script(src='js/ChessKnightProblem/App.js')
-    script(src='js/ChessKnightProblem/ChessKnightVisit.js')
-    script(src='js/ChessKnightProblem/KnightPositionDetector.js')
-
     include includes/Chessboard.pug
 
-    +buildChessBoard('theChessBoardInstance') 
+    +buildChessBoard('theChessBoardInstance')
 
-    p(id='FeedbackLabel') 
-    input(type="button" value="Suche eine Lösung" onclick="javascript:findSolution();")    
-    
-    script.
-        var app = new App('theChessBoardInstance','FeedbackLabel');
+    p(id='FeedbackLabel')
+    input(id='FindSolutionButton' type="button" value="Suche eine Lösung")
 
-        function findSolution(){            
-            app.findAndDisplaySolution();
-        }        
+    //- module scope is not global, so the handler is attached here instead of via onclick
+    script(type='module').
+        import { App } from './js/ChessKnightProblem/App.js';
 
-    
+        const app = new App('theChessBoardInstance', 'FeedbackLabel');
+        document.getElementById('FindSolutionButton').addEventListener('click', () => app.findAndDisplaySolution());
