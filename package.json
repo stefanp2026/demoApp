@@ -14,5 +14,12 @@
   "dependencies": {
     "express": "^5.3.0",
     "pug": "^3.0.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jquery": "^3.5.34",
+    "@types/jqueryui": "^1.12.25",
+    "@types/node": "^24.19.2",
+    "@types/qunit": "^2.19.14"
   }
 }
